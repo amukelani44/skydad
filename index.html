@@ -1,98 +1,794 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OkuhleDreams | Beautician Services</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <header>
-        <h1>OkuhleDreams</h1>
-        <p class="slogan">Elevate your look, elevate your life</p>
-        <nav>
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#gallery">Gallery</a></li>
-                <li><a href="#reviews">Reviews</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <li><a href="https://instagram.com/okuhledream_beauty_pond" target="_blank" class="social-link"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/instagram.svg" alt="Instagram" style="width:22px;height:22px;vertical-align:middle;"></a></li>
-            </ul>
-        </nav>
-    </header>
-    <section id="home" class="hero">
-        <h2>Welcome to OkuhleDreams</h2>
-        <p>Your beauty, our passion. Experience the best in beauty care.</p>
-    </section>
-    <section id="about">
-        <h2>About Us</h2>
-        <p>OkuhleDreams is dedicated to providing top-quality beautician services. Our experienced team ensures you look and feel your best.</p>
-    </section>
-    <section id="services">
-        <h2>Our Services</h2>
-        <div class="service-list">
-            <div class="service-item">
-                <h3>Eye Care Treatment</h3>
-                <p>Revitalize and refresh your eyes with our soothing treatments designed to reduce puffiness, dark circles, and signs of fatigue for a brighter, youthful look.</p>
-            </div>
-            <div class="service-item">
-                <h3>Nail Technology</h3>
-                <p>Enjoy expertly crafted nail enhancements, from acrylics to natural overlays, ensuring your nails are strong, beautiful, and perfectly shaped.</p>
-            </div>
-            <div class="service-item">
-                <h3>Gel Polish</h3>
-                <p>Get long-lasting, chip-resistant color with our premium gel polish application, leaving your nails glossy and flawless for weeks.</p>
-            </div>
-            <div class="service-item">
-                <h3>Hair Installation</h3>
-                <p>Transform your look with our professional hair installation services, offering seamless weaves, wigs, and extensions for natural, stunning results.</p>
-            </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Let's Go Lulu Adventure</title>
+    <style>
+      :root {
+        --sky-top: #7bd7ff;
+        --sky-mid: #c7f0ff;
+        --sky-bottom: #ffe9f1;
+        --panel: rgba(255, 255, 255, 0.72);
+        --panel-strong: rgba(255, 255, 255, 0.94);
+        --pink: #ff7ca8;
+        --pink-deep: #f2528f;
+        --yellow: #ffd56f;
+        --mint: #95e7b8;
+        --lilac: #9c8cff;
+        --blue: #56b9ff;
+        --text: #18233e;
+        --danger: #ff6b6b;
+        --danger-deep: #eb4f4f;
+        --shadow: rgba(27, 41, 76, 0.18);
+      }
+
+      * { box-sizing: border-box; }
+
+      html, body {
+        margin: 0;
+        min-height: 100%;
+        font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+        background: linear-gradient(180deg, var(--sky-top) 0%, var(--sky-mid) 42%, var(--sky-bottom));
+        color: var(--text);
+      }
+
+      body {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 30px 18px;
+      }
+
+      .game-shell {
+        width: min(1280px, 96vw);
+        border-radius: 30px;
+        background: rgba(255, 255, 255, 0.18);
+        border: 4px solid rgba(255, 255, 255, 0.75);
+        box-shadow: 0 28px 80px var(--shadow);
+        padding: 16px;
+      }
+
+      .topbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 16px;
+        padding: 10px 12px 18px;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+
+      .brand-mark {
+        width: 68px;
+        height: 68px;
+        display: grid;
+        place-items: center;
+        border-radius: 20px;
+        background: linear-gradient(135deg, #ffe699, #ff9ed0);
+        box-shadow: 0 18px 22px rgba(255, 124, 168, 0.22);
+        font-size: 2rem;
+        animation: bob 2.8s ease-in-out infinite;
+      }
+
+      .eyebrow {
+        margin: 0;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        font-size: 0.72rem;
+        color: rgba(24, 35, 62, 0.72);
+      }
+
+      h1 {
+        margin: 4px 0 0;
+        font-size: clamp(2rem, 5vw, 3rem);
+        line-height: 1;
+      }
+
+      .hud {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        gap: 10px;
+      }
+
+      .stat {
+        min-width: 100px;
+        background: var(--panel);
+        border: 2px solid rgba(255,255,255,0.8);
+        border-radius: 16px;
+        padding: 12px 14px;
+        text-align: center;
+        box-shadow: 0 12px 24px rgba(69, 88, 132, 0.08);
+      }
+
+      .stat span {
+        display: block;
+        font-size: 0.7rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        opacity: 0.75;
+      }
+
+      .stat strong {
+        display: block;
+        font-size: 1.6rem;
+        margin-top: 6px;
+      }
+
+      .score-box {
+        background: linear-gradient(135deg, #fff3b8, #ffdf7e);
+      }
+
+      .layout {
+        display: grid;
+        grid-template-columns: 240px minmax(0, 1fr) 240px;
+        gap: 20px;
+      }
+
+      .panel,
+      .main-card {
+        background: var(--panel);
+        border: 3px solid rgba(255,255,255,0.8);
+        border-radius: 26px;
+        box-shadow: 0 18px 44px rgba(33, 54, 89, 0.08);
+      }
+
+      .side {
+        padding: 18px;
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+      }
+
+      .card {
+        background: rgba(255,255,255,0.8);
+        border: 2px solid rgba(117, 130, 196, 0.22);
+        border-radius: 18px;
+        padding: 16px;
+      }
+
+      .panel-label {
+        margin: 0 0 10px;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        font-size: 0.7rem;
+        font-weight: 800;
+        color: var(--lilac);
+      }
+
+      .inventory {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 9px;
+      }
+
+      .inventory li {
+        background: linear-gradient(135deg, #eef7ff, #fff9cec2);
+        border-radius: 12px;
+        padding: 10px 12px;
+        font-weight: 700;
+      }
+
+      .button-stack {
+        display: grid;
+        gap: 10px;
+      }
+
+      button {
+        font: inherit;
+      }
+
+      .action-button,
+      .choice-btn,
+      .start-btn {
+        cursor: pointer;
+        border: none;
+        border-radius: 14px;
+        font-weight: 800;
+        transition: transform 0.14s ease, box-shadow 0.14s ease;
+      }
+
+      .action-button {
+        padding: 12px 14px;
+        background: linear-gradient(135deg, var(--pink), var(--pink-deep));
+        color: #fff;
+        box-shadow: 0 12px 18px rgba(242, 82, 143, 0.22);
+      }
+
+      .action-button:hover,
+      .choice-btn:hover,
+      .start-btn:hover {
+        transform: translateY(-2px);
+      }
+
+      .main-card {
+        padding: 18px;
+      }
+
+      .scene-visual {
+        position: relative;
+        height: 260px;
+        border-radius: 24px;
+        overflow: hidden;
+        display: grid;
+        place-items: center;
+        background: linear-gradient(180deg, #9ad4ff 0%, #dffef0 100%);
+        border: 3px solid rgba(255,255,255,0.9);
+      }
+
+      .scene-visual::before,
+      .scene-visual::after {
+        content: "";
+        position: absolute;
+        border-radius: 50%;
+        background: rgba(255,255,255,0.32);
+      }
+
+      .scene-visual::before {
+        width: 180px;
+        height: 180px;
+        right: 4%;
+        top: 8%;
+      }
+
+      .scene-visual::after {
+        width: 230px;
+        height: 230px;
+        left: -14px;
+        bottom: -70px;
+      }
+
+      .character {
+        position: relative;
+        z-index: 1;
+        font-size: clamp(4.5rem, 10vw, 8rem);
+        filter: drop-shadow(0 16px 18px rgba(44, 58, 92, 0.2));
+        animation: bob 2.3s ease-in-out infinite;
+      }
+
+      .scene-tag {
+        position: absolute;
+        bottom: 18px;
+        right: 18px;
+        z-index: 1;
+        background: rgba(255,255,255,0.8);
+        border-radius: 999px;
+        padding: 8px 12px;
+        font-weight: 800;
+      }
+
+      .story {
+        padding: 18px 8px 12px;
+      }
+
+      .chapter {
+        margin: 0 0 8px;
+        font-size: 0.72rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--lilac);
+        font-weight: 800;
+      }
+
+      .story h2 {
+        margin: 0 0 8px;
+        font-size: clamp(1.6rem, 3vw, 2.5rem);
+      }
+
+      .story p {
+        margin: 0;
+        line-height: 1.7;
+        font-size: 1.08rem;
+      }
+
+      .choices {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+        gap: 12px;
+        margin-top: 8px;
+      }
+
+      .choice-btn {
+        min-height: 82px;
+        text-align: left;
+        padding: 16px 14px;
+        color: var(--text);
+        background: linear-gradient(135deg, #a3e4ff, #9fe7c8);
+        box-shadow: 0 16px 24px rgba(98, 190, 255, 0.18);
+      }
+
+      .choice-btn.secondary { background: linear-gradient(135deg, #ffd7a7, #ffb2c5); }
+      .choice-btn.good { background: linear-gradient(135deg, #baf7d4, #8be0ad); }
+      .choice-btn.enemy { background: linear-gradient(135deg, #ffb7c7, #ff8484); }
+
+      .mission,
+      .enemy-card {
+        background: rgba(255,255,255,0.8);
+        border: 2px solid rgba(117, 130, 196, 0.22);
+        border-radius: 18px;
+        padding: 16px;
+      }
+
+      .mission p {
+        margin: 0;
+        line-height: 1.6;
+      }
+
+      .enemy-card h3 {
+        margin: 0 0 10px;
+        font-size: 1.4rem;
+      }
+
+      .health-bar {
+        width: 100%;
+        height: 16px;
+        border-radius: 999px;
+        background: rgba(24,35,62,0.12);
+        overflow: hidden;
+      }
+
+      .health-bar span {
+        display: block;
+        width: 100%;
+        height: 100%;
+        border-radius: inherit;
+        background: linear-gradient(90deg, #ff7d7d, #ff4f4f);
+        transition: width 0.2s ease;
+      }
+
+      .enemy-status {
+        margin: 10px 0 0;
+        opacity: 0.8;
+      }
+
+      .intro-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(10, 19, 37, 0.36);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 18px;
+        z-index: 5;
+      }
+
+      .intro-card {
+        width: min(680px, 90vw);
+        background: linear-gradient(180deg, #fff7d7, #ffffff);
+        border: 4px solid rgba(255,255,255,0.8);
+        border-radius: 30px;
+        box-shadow: 0 28px 60px rgba(25, 38, 67, 0.2);
+        padding: 26px;
+        text-align: center;
+      }
+
+      .intro-card h2 {
+        margin: 0 0 14px;
+        font-size: clamp(2rem, 5vw, 3.5rem);
+      }
+
+      .intro-card p {
+        margin: 0 0 18px;
+        font-size: 1.06rem;
+        line-height: 1.7;
+      }
+
+      .start-btn {
+        background: linear-gradient(135deg, var(--yellow), #ffb954);
+        color: #382411;
+        padding: 16px 28px;
+        font-size: 1.2rem;
+        box-shadow: 0 18px 22px rgba(255, 185, 84, 0.28);
+      }
+
+      .hidden { display: none !important; }
+
+      @keyframes bob {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-10px); }
+      }
+
+      @media (max-width: 980px) {
+        .layout {
+          grid-template-columns: 1fr;
+        }
+
+        .topbar {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .hud {
+          justify-content: flex-start;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="game-shell">
+      <header class="topbar">
+        <div class="brand">
+          <div class="brand-mark">✨</div>
+          <div>
+            <p class="eyebrow">Cartoon Quest</p>
+            <h1>Let's Go Lulu</h1>
+          </div>
         </div>
-    </section>
-    <section id="gallery">
-        <h2>Gallery</h2>
-        <div class="gallery">
-            <div class="gallery-slot"><img src="../Downloads/IMG-20250610-WA0011.jpg" alt="OkuhleDreams work 1"></div>
-            <div class="gallery-slot"><img src="../Downloads/IMG-20250610-WA0011.jpg" alt="OkuhleDreams work 2"></div>
-            <div class="gallery-slot"><img src="../Downloads/IMG-20250610-WA0011.jpg" alt="OkuhleDreams work 3"></div>
-            <div class="gallery-slot"><img src="../Downloads/IMG-20250610-WA0011.jpg" alt="OkuhleDreams work 4"></div>
-            <div class="gallery-slot"><img src="../Downloads/IMG-20250610-WA0011.jpg" alt="OkuhleDreams work 5"></div>
+
+        <div class="hud" aria-label="Game status">
+          <div class="stat">
+            <span>Stars</span>
+            <strong id="stars">0</strong>
+          </div>
+          <div class="stat">
+            <span>Sparkle</span>
+            <strong id="sparkle">10</strong>
+          </div>
+          <div class="stat">
+            <span>Health</span>
+            <strong id="health">10</strong>
+          </div>
+          <div class="stat score-box">
+            <span>Score</span>
+            <strong id="score">0</strong>
+          </div>
         </div>
-    </section>
-    <section id="reviews">
-        <h2>Consumer Reviews</h2>
-        <div class="reviews-list">
-            <div class="review-item">
-                <p>"Absolutely loved my nails! The service was professional and friendly."</p>
-                <span>- Thandi M.</span>
+      </header>
+
+      <main class="layout">
+        <aside class="panel side">
+          <div class="card">
+            <p class="panel-label">Lulu's Pack</p>
+            <ul id="inventory" class="inventory"></ul>
+          </div>
+
+          <div class="card">
+            <div class="button-stack">
+              <button id="restartBtn" class="action-button" type="button">Restart Adventure</button>
+              <button id="soundToggle" class="action-button" type="button">🔊 Sound On</button>
             </div>
-            <div class="review-item">
-                <p>"My hair installation looks so natural. I will definitely come back!"</p>
-                <span>- Lerato S.</span>
-            </div>
-            <div class="review-item">
-                <p>"The eye care treatment was relaxing and made a real difference."</p>
-                <span>- Zanele K.</span>
-            </div>
-        </div>
-    </section>
-    <section id="contact">
-        <h2>Contact Us</h2>
-        <p class="phone">Call or WhatsApp: <a href="tel:0748343398">074 834 3398</a></p>
-        <form>
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" required>
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
-            <label for="message">Message:</label>
-            <textarea id="message" name="message" required></textarea>
-            <button type="submit" class="animated-btn">Send</button>
-        </form>
-    </section>
-    <footer>
-        <p>&copy; 2025 OkuhleDreams. All rights reserved.</p>
-    </footer>
-</body>
+          </div>
+        </aside>
+
+        <section class="main-card">
+          <div class="scene-visual" id="sceneVisual" aria-live="polite">
+            <div class="character" id="characterEmoji">🌤️</div>
+            <div class="scene-tag" id="sceneTag">Sunrise Path</div>
+          </div>
+
+          <div class="story">
+            <p class="chapter" id="chapterLabel">Chapter 1</p>
+            <h2 id="sceneTitle">A New Adventure Begins</h2>
+            <p id="sceneText">Lulu wakes up with a bright smile and a mission: collect the lost stars before the moon rises.</p>
+          </div>
+
+          <div id="choices" class="choices" aria-live="polite"></div>
+        </section>
+
+        <aside class="panel side">
+          <div class="mission">
+            <p class="panel-label">Mission</p>
+            <p id="missionText">Find 3 magical stars and save the sparkle kingdom.</p>
+          </div>
+
+          <div class="enemy-card">
+            <p class="panel-label">Villain</p>
+            <h3 id="enemyName">Shadow Fog</h3>
+            <div class="health-bar"><span id="enemyBar"></span></div>
+            <p id="enemyStatus" class="enemy-status">Ready to cause mischief.</p>
+          </div>
+        </aside>
+      </main>
+    </div>
+
+    <div id="introOverlay" class="intro-overlay">
+      <div class="intro-card">
+        <h2>Let's Go Lulu</h2>
+        <p>
+          Lulu is on a magical adventure across glowing meadows, rivers, and castles. Collect three stars,
+          beat the villains, and save the sparkle kingdom before sunset.
+        </p>
+        <button type="button" class="start-btn" id="startBtn">Start Adventure</button>
+      </div>
+    </div>
+
+    <script>
+      const state = {
+        stars: 0,
+        sparkle: 10,
+        health: 10,
+        score: 0,
+        inventory: ['Rainbow Map'],
+        scene: 'intro',
+        soundOn: true,
+        started: false
+      };
+
+      const inventorySet = new Set(state.inventory);
+
+      const scenes = {
+        intro: {
+          chapter: 'Chapter 1',
+          title: 'A New Adventure Begins',
+          tag: 'Sunrise Path',
+          emoji: '🌤️',
+          text: 'Lulu wakes up with a bright smile and a mission: collect the lost stars before the moon rises.',
+          mission: 'Find 3 magical stars and save the sparkle kingdom.',
+          enemyName: 'Shadow Fog',
+          enemyHealth: 100,
+          choices: [
+            { label: 'Follow the rainbow trail', next: 'meadow', className: 'good', effects: { score: 20, sparkle: 1 } },
+            { label: 'Visit the bubble forest', next: 'forest', className: 'secondary', effects: { score: 18 } }
+          ]
+        },
+        meadow: {
+          chapter: 'Chapter 2',
+          title: 'Rainbow Meadow',
+          tag: 'Blooming Trail',
+          emoji: '🌈',
+          text: 'The grass sparkles as Lulu moves through a meadow brushed with rainbow light. A golden star peeks from a flower bush.',
+          mission: 'Collect shimmer and stay brave.',
+          enemyName: 'Moss Monster',
+          enemyHealth: 80,
+          choices: [
+            { label: 'Pick the golden star', next: 'lake', className: 'good', effects: { stars: 1, score: 40, sparkle: 2 }, item: 'Golden Star' },
+            { label: 'Battle the moss monster', next: 'battle', className: 'enemy', effects: { score: 30, health: -1 } }
+          ]
+        },
+        forest: {
+          chapter: 'Chapter 2',
+          title: 'Bubble Forest',
+          tag: 'Bubble Grove',
+          emoji: '🌿',
+          text: 'The trees hum with cheerful music as Lulu follows a fox toward a bright little path in the woods.',
+          mission: 'Use courage and curiosity to gather new magic.',
+          enemyName: 'Whisper Wisp',
+          enemyHealth: 65,
+          choices: [
+            { label: 'Follow the fox to the river', next: 'river', className: 'good', effects: { score: 25, sparkle: 2 } },
+            { label: 'Challenge the whisper wisp', next: 'battle', className: 'enemy', effects: { score: 28, health: -1 } }
+          ]
+        },
+        lake: {
+          chapter: 'Chapter 3',
+          title: 'Crystal Lake',
+          tag: 'Moonwater',
+          emoji: '💎',
+          text: 'The water shines like glass. A second star swings above the lake and invites Lulu closer.',
+          mission: 'Reach the castle before the moonlight fades.',
+          enemyName: 'Tide Troll',
+          enemyHealth: 90,
+          choices: [
+            { label: 'Catch the star from the water', next: 'castle', className: 'good', effects: { stars: 1, score: 45, sparkle: 3 }, item: 'Crystal Star' },
+            { label: 'Use a sparkle splash attack', next: 'battle', className: 'enemy', effects: { score: 35, sparkle: -1, health: -1 } }
+          ]
+        },
+        river: {
+          chapter: 'Chapter 3',
+          title: 'Silver River',
+          tag: 'River Run',
+          emoji: '🛶',
+          text: 'Lulu rides a tiny boat across a silver river and finds a star resting on a waterfall island.',
+          mission: 'Choose carefully and keep your sparkle high.',
+          enemyName: 'Frog Bandit',
+          enemyHealth: 75,
+          choices: [
+            { label: 'Grab the waterfall star', next: 'castle', className: 'good', effects: { stars: 1, score: 50, sparkle: 2 }, item: 'Waterfall Star' },
+            { label: 'Race the frogs to the island', next: 'battle', className: 'enemy', effects: { score: 30, health: -2 } }
+          ]
+        },
+        battle: {
+          chapter: 'Chapter 4',
+          title: 'Sparkle Battle',
+          tag: 'Hero Moment',
+          emoji: '⚡',
+          text: 'The villain blocks the path. Lulu must use a bold move to protect the kingdom and her friends.',
+          mission: 'Choose the smartest attack and protect your health.',
+          enemyName: 'Shadow Fog',
+          enemyHealth: 100,
+          choices: [
+            { label: 'Use a rainbow blast', next: 'castle', className: 'enemy', effects: { score: 70, sparkle: -2, health: 1 } },
+            { label: 'Perform a happy dance attack', next: 'finale', className: 'good', effects: { score: 90, sparkle: 3, health: 2 } }
+          ]
+        },
+        castle: {
+          chapter: 'Chapter 5',
+          title: 'Crystal Castle',
+          tag: 'Castle Gate',
+          emoji: '🏰',
+          text: 'The crystal castle glows with hope as Lulu enters with several star fragments shining in her hands.',
+          mission: 'Finish the adventure and light the whole sky.',
+          enemyName: 'Final Sentinel',
+          enemyHealth: 60,
+          choices: [
+            { label: 'Light the star crown', next: 'ending', className: 'good', effects: { stars: 1, score: 100, sparkle: 4 }, item: 'Star Crown' },
+            { label: 'Ask the castle to sing for everyone', next: 'ending', className: 'secondary', effects: { score: 90, sparkle: 2 } }
+          ]
+        },
+        finale: {
+          chapter: 'Finale',
+          title: 'The Heroic Finale',
+          tag: 'Grand Celebration',
+          emoji: '🎉',
+          text: 'Lulu’s happy dance blasts away the last shadows, and the sky bursts into color as the realm cheers.',
+          mission: 'Bring magic home and celebrate the victory.',
+          enemyName: 'Broken Fog',
+          enemyHealth: 0,
+          choices: [
+            { label: 'Enter the crystal castle', next: 'ending', className: 'good', effects: { stars: 1, score: 110, sparkle: 4 } }
+          ]
+        },
+        ending: {
+          chapter: 'Adventure Complete',
+          title: 'Lulu Saves the Sparkle Kingdom!',
+          tag: 'Victory',
+          emoji: '🌟',
+          text: 'The stars shine bright, the castle glows, and the whole kingdom dances in celebration. Lulu is the hero of a joyful new story.',
+          mission: 'You won! Play again for another magical adventure.',
+          enemyName: 'Defeated',
+          enemyHealth: 0,
+          choices: [
+            { label: 'Play again', next: 'intro', className: 'good', effects: { score: 0, sparkle: 10, health: 10, stars: 0 } }
+          ]
+        }
+      };
+
+      const refs = {
+        stars: document.getElementById('stars'),
+        sparkle: document.getElementById('sparkle'),
+        health: document.getElementById('health'),
+        score: document.getElementById('score'),
+        inventory: document.getElementById('inventory'),
+        sceneTag: document.getElementById('sceneTag'),
+        sceneTitle: document.getElementById('sceneTitle'),
+        sceneText: document.getElementById('sceneText'),
+        chapterLabel: document.getElementById('chapterLabel'),
+        choices: document.getElementById('choices'),
+        missionText: document.getElementById('missionText'),
+        enemyName: document.getElementById('enemyName'),
+        enemyBar: document.getElementById('enemyBar'),
+        enemyStatus: document.getElementById('enemyStatus'),
+        sceneVisual: document.getElementById('sceneVisual'),
+        characterEmoji: document.getElementById('characterEmoji'),
+        restartBtn: document.getElementById('restartBtn'),
+        soundToggle: document.getElementById('soundToggle'),
+        introOverlay: document.getElementById('introOverlay'),
+        startBtn: document.getElementById('startBtn')
+      };
+
+      function setInventoryDisplay() {
+        refs.inventory.innerHTML = state.inventory.map((item) => `<li>${item}</li>`).join('');
+      }
+
+      function updateHud() {
+        refs.stars.textContent = String(state.stars);
+        refs.sparkle.textContent = String(state.sparkle);
+        refs.health.textContent = String(state.health);
+        refs.score.textContent = String(state.score);
+        setInventoryDisplay();
+      }
+
+      function addToInventory(item) {
+        if (!item) return;
+        if (!inventorySet.has(item)) {
+          inventorySet.add(item);
+          state.inventory.push(item);
+        }
+      }
+
+      function playTone(type = 'good') {
+        if (!state.soundOn) return;
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+        if (!AudioCtx) return;
+
+        const audio = new AudioCtx();
+        const oscillator = audio.createOscillator();
+        const gain = audio.createGain();
+
+        oscillator.type = type === 'enemy' ? 'sawtooth' : 'triangle';
+        oscillator.frequency.value = type === 'enemy' ? 180 : 440;
+        gain.gain.value = 0.04;
+
+        oscillator.connect(gain);
+        gain.connect(audio.destination);
+        oscillator.start();
+        oscillator.stop(audio.currentTime + 0.18);
+        setTimeout(() => audio.close(), 220);
+      }
+
+      function applyEffects(effects = {}) {
+        const keys = ['stars', 'sparkle', 'health', 'score'];
+        keys.forEach((key) => {
+          if (typeof effects[key] === 'number') {
+            state[key] = Math.max(0, state[key] + effects[key]);
+          }
+        });
+      }
+
+      function renderScene() {
+        const scene = scenes[state.scene];
+        if (!scene) return;
+
+        refs.characterEmoji.textContent = scene.emoji;
+        refs.sceneTag.textContent = scene.tag;
+        refs.sceneTitle.textContent = scene.title;
+        refs.sceneText.textContent = scene.text;
+        refs.chapterLabel.textContent = scene.chapter;
+        refs.missionText.textContent = scene.mission;
+        refs.enemyName.textContent = scene.enemyName;
+        refs.enemyBar.style.width = `${Math.max(0, scene.enemyHealth ?? 100)}%`;
+        refs.enemyStatus.textContent = (scene.enemyHealth ?? 100) > 0 ? 'Ready to cause mischief.' : 'Defeated!';
+        refs.choices.innerHTML = '';
+
+        scene.choices.forEach((choice) => {
+          const button = document.createElement('button');
+          button.type = 'button';
+          button.textContent = choice.label;
+          button.className = `choice-btn ${choice.className || ''}`;
+          button.addEventListener('click', () => {
+            applyEffects(choice.effects);
+            addToInventory(choice.item);
+            playTone(choice.effects && choice.effects.health && choice.effects.health < 0 ? 'enemy' : 'good');
+
+            state.scene = choice.next;
+            if (state.stars >= 3 && state.scene !== 'ending') {
+              state.scene = 'castle';
+            }
+            if (state.health <= 0) {
+              state.scene = 'intro';
+            }
+
+            updateHud();
+            renderScene();
+          });
+          refs.choices.appendChild(button);
+        });
+
+        updateHud();
+      }
+
+      function resetGame() {
+        Object.assign(state, {
+          stars: 0,
+          sparkle: 10,
+          health: 10,
+          score: 0,
+          inventory: ['Rainbow Map'],
+          scene: 'intro',
+          started: true,
+          soundOn: state.soundOn
+        });
+        inventorySet.clear();
+        state.inventory.forEach((item) => inventorySet.add(item));
+        refs.introOverlay.classList.add('hidden');
+        renderScene();
+      }
+
+      refs.startBtn.addEventListener('click', () => {
+        resetGame();
+      });
+
+      refs.restartBtn.addEventListener('click', () => {
+        resetGame();
+        playTone('good');
+      });
+
+      refs.soundToggle.addEventListener('click', () => {
+        state.soundOn = !state.soundOn;
+        refs.soundToggle.textContent = state.soundOn ? '🔊 Sound On' : '🔇 Sound Off';
+      });
+
+      updateHud();
+      renderScene();
+    </script>
+  </body>
 </html>
