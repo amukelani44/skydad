@@ -1,215 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <meta name="theme-color" content="#8edcff" />
-    <title>Let's Go Lulu Adventure</title>
-    <style>
-      :root {
-        --sky-top: #7bd7ff;
-        --sky-mid: #c7f0ff;
-        --sky-bottom: #ffe9f1;
-        --panel: rgba(255,255,255,.82);
-        --pink: #ff7ca8;
-        --pink-deep: #f2528f;
-        --yellow: #ffd56f;
-        --lilac: #9c8cff;
-        --text: #18233e;
-        --shadow: rgba(27,41,76,.16);
-      }
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#8edcff">
+  <title>Lulu's Little Cartoon Universe</title>
+  <style>
+    :root{--ink:#1d2948;--pink:#ff79aa;--purple:#8e7ae9;--gold:#ffd56f;--glass:rgba(255,255,255,.82);--shadow:0 16px 38px rgba(49,56,103,.13)}
+    *{box-sizing:border-box} html{min-height:100%;-webkit-text-size-adjust:100%} body{margin:0;min-height:100vh;min-height:100svh;padding:max(10px,env(safe-area-inset-top)) max(10px,env(safe-area-inset-right)) max(10px,env(safe-area-inset-bottom)) max(10px,env(safe-area-inset-left));font-family:"Trebuchet MS",system-ui,sans-serif;color:var(--ink);background:linear-gradient(180deg,#91dcff,#d6f5ff 48%,#ffe8f0)} button{font:inherit;touch-action:manipulation;-webkit-tap-highlight-color:transparent} button:focus-visible{outline:3px solid #5542c5;outline-offset:3px}
+    .app{max-width:1120px;margin:auto}.header{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:4px 2px 14px}.brand{display:flex;align-items:center;gap:10px}.logo{width:48px;height:48px;display:grid;place-items:center;border-radius:16px;background:linear-gradient(135deg,#ffe699,#ff9ed0);font-size:1.55rem}.kicker{margin:0;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;opacity:.7}.brand h1{margin:2px 0 0;font-size:clamp(1.5rem,5vw,2.4rem)}.header-tools{display:flex;gap:8px;align-items:center}.small-btn,.primary,.game-btn,.world-card{border:0;cursor:pointer;font-weight:800}.small-btn{min-height:44px;padding:9px 13px;border-radius:13px;background:var(--glass);color:var(--ink);box-shadow:var(--shadow)}
+    .view{display:none}.view.active{display:block}.hero{position:relative;overflow:hidden;padding:clamp(22px,6vw,58px);border:3px solid #fff;border-radius:28px;background:linear-gradient(140deg,rgba(255,255,255,.88),rgba(255,255,255,.57));box-shadow:var(--shadow);text-align:center}.hero:before,.hero:after{content:"";position:absolute;border-radius:50%;background:rgba(255,255,255,.45);pointer-events:none}.hero:before{width:180px;height:180px;left:-42px;bottom:-75px}.hero:after{width:145px;height:145px;right:-20px;top:-40px}.hero-art{position:relative;z-index:1;font-size:clamp(4rem,14vw,8rem);line-height:1.2;animation:bob 2.4s ease-in-out infinite}.hero h2{position:relative;z-index:1;margin:8px 0;font-size:clamp(2rem,7vw,3.8rem)}.hero p{position:relative;z-index:1;max-width:650px;margin:0 auto 20px;font-size:clamp(1rem,3vw,1.15rem);line-height:1.6}.primary{position:relative;z-index:1;min-height:54px;padding:13px 22px;border-radius:16px;background:linear-gradient(135deg,#ffdf81,#ffad55);color:#392b31;box-shadow:0 12px 22px rgba(255,173,85,.25);font-size:1.05rem}.section-head{display:flex;justify-content:space-between;align-items:end;gap:12px;margin:8px 0 16px}.section-head h2{margin:0;font-size:clamp(1.6rem,5vw,2.5rem)}.section-head p{margin:4px 0 0;opacity:.72}.world-grid,.mini-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.world-card{position:relative;min-height:185px;padding:18px;border:2px solid rgba(255,255,255,.95);border-radius:22px;text-align:left;color:var(--ink);box-shadow:var(--shadow);transition:transform .15s,filter .15s}.world-card:hover,.game-btn:hover,.small-btn:hover,.primary:hover{transform:translateY(-2px);filter:saturate(1.08)}.world-card:disabled{cursor:not-allowed;filter:grayscale(.45);opacity:.72}.world-card .emoji{display:block;font-size:3rem}.world-card strong{display:block;margin:6px 0;font-size:1.25rem}.world-card span{line-height:1.4}.world-card .lock{position:absolute;right:13px;top:12px;font-size:1.25rem}.meadow{background:linear-gradient(145deg,#c7f5cb,#f6ffd9)}.bubble{background:linear-gradient(145deg,#c8efff,#edddff)}.castle{background:linear-gradient(145deg,#ffd9ee,#ffe8b1)}.collection{margin-top:16px;padding:15px 17px;border:2px solid white;border-radius:18px;background:var(--glass);box-shadow:var(--shadow)}.collection h3{margin:0 0 8px}.badges{display:flex;flex-wrap:wrap;gap:8px}.badge{padding:7px 10px;border-radius:999px;background:#fff2b7;font-size:.88rem;font-weight:800}.badge.empty{background:#edf1fa;opacity:.75}
+    .game-layout{display:grid;grid-template-columns:minmax(0,1fr) 230px;gap:14px}.game-main,.sidebar{padding:14px;border:2px solid white;border-radius:22px;background:var(--glass);box-shadow:var(--shadow)}.scene-art{position:relative;min-height:220px;display:grid;place-items:center;overflow:hidden;border:2px solid white;border-radius:18px;background:linear-gradient(#8ed6ff,#e1f9d1)}.scene-art:before,.scene-art:after{content:"";position:absolute;border-radius:50%;background:rgba(255,255,255,.38)}.scene-art:before{width:150px;height:150px;right:4%;top:5%}.scene-art:after{width:200px;height:200px;left:-25px;bottom:-100px}.scene-emoji{position:relative;z-index:1;font-size:clamp(4rem,12vw,7rem);animation:bob 2.2s ease-in-out infinite}.scene-name{position:absolute;z-index:1;right:10px;bottom:10px;padding:7px 10px;border-radius:999px;background:rgba(255,255,255,.88);font-weight:800;font-size:.82rem}.chapter{margin:14px 0 5px;color:var(--purple);font-size:.7rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase}.game-main h2{margin:0 0 7px;font-size:clamp(1.5rem,5vw,2.3rem)}.story{margin:0;line-height:1.6}.choices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin-top:14px}.game-btn{min-height:54px;padding:12px;border-radius:14px;background:linear-gradient(135deg,#a4e7ff,#a5ebc3);color:var(--ink);text-align:left;line-height:1.3}.game-btn.alt{background:linear-gradient(135deg,#ffd8a9,#ffb4c9)}.game-btn.warm{background:linear-gradient(135deg,#c8bcff,#b5d8ff)}.sidebar{display:flex;flex-direction:column;gap:10px}.side-card{padding:13px;border:1px solid rgba(142,122,233,.2);border-radius:15px;background:rgba(255,255,255,.82)}.side-card h3{margin:0 0 8px;font-size:1rem}.side-card p{margin:0;line-height:1.5;font-size:.92rem}.stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}.stat{padding:9px 6px;border-radius:12px;background:#f2f4ff;text-align:center}.stat span{display:block;font-size:.64rem;text-transform:uppercase;opacity:.7}.stat strong{font-size:1.15rem}.inventory{display:flex;flex-wrap:wrap;gap:6px}.item{padding:6px 9px;border-radius:999px;background:#fff1b6;font-size:.8rem;font-weight:800}.bar{height:12px;overflow:hidden;border-radius:999px;background:#e8e8f3}.bar span{display:block;width:100%;height:100%;background:linear-gradient(90deg,#ff8585,#ff4e70);transition:width .25s}.toast{position:fixed;left:50%;bottom:max(18px,env(safe-area-inset-bottom));z-index:10;max-width:calc(100vw - 28px);padding:12px 16px;border:2px solid white;border-radius:14px;background:#29284b;color:white;box-shadow:var(--shadow);transform:translate(-50%,20px);opacity:0;pointer-events:none;transition:.2s}.toast.show{transform:translate(-50%,0);opacity:1}.footer-note{text-align:center;padding:18px 4px 6px;font-size:.78rem;opacity:.66}.hidden{display:none!important}@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+    @media(max-width:760px){body{padding:max(8px,env(safe-area-inset-top)) max(8px,env(safe-area-inset-right)) max(8px,env(safe-area-inset-bottom)) max(8px,env(safe-area-inset-left))}.header{align-items:flex-start}.world-grid,.mini-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.world-card{min-height:160px;padding:13px}.world-card .emoji{font-size:2.5rem}.game-layout{grid-template-columns:1fr}.sidebar{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));padding:10px;gap:8px}.side-card{padding:10px}.scene-art{min-height:180px}.game-main{padding:10px}}
+    @media(max-width:430px){.header{flex-wrap:wrap}.header-tools{width:100%;justify-content:flex-end}.logo{width:42px;height:42px;flex-basis:42px}.world-grid,.mini-grid{grid-template-columns:1fr}.world-card{min-height:130px;display:grid;grid-template-columns:58px 1fr;column-gap:10px;align-items:center}.world-card .emoji{grid-row:span 2;font-size:2.5rem}.world-card strong{align-self:end;margin:0}.world-card span:not(.emoji):not(.lock){align-self:start}.choices{grid-template-columns:1fr}.sidebar{grid-template-columns:1fr 1fr}.scene-art{min-height:155px}}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+  </style>
+</head>
+<body>
+  <div class="app">
+    <header class="header">
+      <div class="brand"><div class="logo" aria-hidden="true">✨</div><div><p class="kicker">A little world of big adventures</p><h1>Lulu's Cartoon Universe</h1></div></div>
+      <div class="header-tools"><button class="small-btn" id="soundBtn" type="button" aria-pressed="true">🔊 Sound</button><button class="small-btn" id="resetBtn" type="button">↻ Reset progress</button></div>
+    </header>
 
-      * { box-sizing: border-box; }
-      html { min-height: 100%; -webkit-text-size-adjust: 100%; }
-      body {
-        margin: 0;
-        min-height: 100vh;
-        min-height: 100svh;
-        padding: max(10px, env(safe-area-inset-top)) max(10px, env(safe-area-inset-right)) max(10px, env(safe-area-inset-bottom)) max(10px, env(safe-area-inset-left));
-        font-family: "Trebuchet MS", "Segoe UI", sans-serif;
-        color: var(--text);
-        background: linear-gradient(180deg,var(--sky-top),var(--sky-mid) 42%,var(--sky-bottom));
-      }
+    <main>
+      <section id="homeView" class="view active">
+        <div class="hero"><div class="hero-art" aria-hidden="true">👧🏽 🌈 🐰</div><h2>Let's go on an adventure!</h2><p>Explore colorful worlds, help new friends, collect sparkly badges, and play tiny games along the way. Your progress saves on this device.</p><button class="primary" id="exploreBtn" type="button">Explore the universe</button></div>
+        <div class="collection"><h3>🏆 Your collection</h3><div id="homeBadges" class="badges"></div></div>
+      </section>
 
-      button { font: inherit; -webkit-tap-highlight-color: transparent; }
-      button:focus-visible { outline: 3px solid #5542c5; outline-offset: 3px; }
-      .game-shell {
-        width: min(1280px,100%);
-        margin: 0 auto;
-        padding: clamp(10px,2vw,18px);
-        border: 3px solid rgba(255,255,255,.8);
-        border-radius: clamp(18px,4vw,30px);
-        background: rgba(255,255,255,.2);
-        box-shadow: 0 20px 60px var(--shadow);
-      }
-      .topbar { display:flex; align-items:center; justify-content:space-between; gap:14px; padding: 4px 4px 14px; }
-      .brand { display:flex; align-items:center; gap:10px; min-width:0; }
-      .brand-mark { flex:0 0 54px; width:54px; height:54px; display:grid; place-items:center; border-radius:17px; background:linear-gradient(135deg,#ffe699,#ff9ed0); font-size:1.7rem; }
-      .eyebrow { margin:0; font-size:.66rem; letter-spacing:.12em; text-transform:uppercase; opacity:.72; }
-      h1 { margin:3px 0 0; font-size:clamp(1.55rem,4vw,2.7rem); line-height:1.05; }
-      .hud { display:grid; grid-template-columns:repeat(4,minmax(58px,1fr)); gap:6px; }
-      .stat { min-width:0; padding:8px 9px; text-align:center; border:1px solid rgba(255,255,255,.9); border-radius:13px; background:var(--panel); box-shadow:0 8px 16px rgba(69,88,132,.07); }
-      .stat span { display:block; font-size:.62rem; letter-spacing:.05em; text-transform:uppercase; opacity:.76; }
-      .stat strong { display:block; margin-top:3px; font-size:1.25rem; }
-      .score-box { background:linear-gradient(135deg,#fff3b8,#ffdf7e); }
-      .layout { display:grid; grid-template-columns:minmax(155px,220px) minmax(0,1fr) minmax(155px,220px); gap:12px; }
-      .panel,.main-card { min-width:0; border:2px solid rgba(255,255,255,.88); border-radius:21px; background:var(--panel); box-shadow:0 14px 30px rgba(33,54,89,.07); }
-      .side { display:flex; flex-direction:column; gap:12px; padding:12px; }
-      .card,.mission,.enemy-card { min-width:0; padding:13px; border:1px solid rgba(117,130,196,.2); border-radius:15px; background:rgba(255,255,255,.84); }
-      .panel-label { margin:0 0 9px; color:var(--lilac); font-size:.67rem; font-weight:800; letter-spacing:.08em; text-transform:uppercase; }
-      .inventory { display:flex; flex-direction:column; gap:7px; list-style:none; margin:0; padding:0; }
-      .inventory li { padding:8px 10px; border-radius:10px; background:linear-gradient(135deg,#eef7ff,#fff9ce); font-size:.88rem; font-weight:700; overflow-wrap:anywhere; }
-      .button-stack { display:grid; gap:8px; }
-      .action-button,.choice-btn,.start-btn { min-height:48px; border:0; border-radius:13px; font-weight:800; cursor:pointer; touch-action:manipulation; transition:transform .14s ease, box-shadow .14s ease; }
-      .action-button { padding:11px 12px; color:white; background:linear-gradient(135deg,var(--pink),var(--pink-deep)); box-shadow:0 8px 14px rgba(242,82,143,.2); }
-      .main-card { padding:clamp(10px,2vw,16px); }
-      .scene-visual { position:relative; height:clamp(155px,29vw,250px); overflow:hidden; display:grid; place-items:center; border:2px solid white; border-radius:18px; background:linear-gradient(180deg,#9ad4ff,#dffef0); }
-      .scene-visual::before,.scene-visual::after { content:""; position:absolute; border-radius:50%; background:rgba(255,255,255,.32); pointer-events:none; }
-      .scene-visual::before { width:150px; height:150px; right:4%; top:5%; }
-      .scene-visual::after { width:190px; height:190px; left:-15px; bottom:-75px; }
-      .character { position:relative; z-index:1; font-size:clamp(4rem,13vw,7.5rem); filter:drop-shadow(0 12px 14px rgba(44,58,92,.2)); animation:bob 2.3s ease-in-out infinite; }
-      .scene-tag { position:absolute; right:10px; bottom:10px; z-index:1; max-width:65%; padding:7px 10px; border-radius:999px; background:rgba(255,255,255,.88); font-size:.8rem; font-weight:800; text-align:right; }
-      .story { padding:14px 3px 10px; }
-      .chapter { margin:0 0 6px; color:var(--lilac); font-size:.67rem; font-weight:800; letter-spacing:.08em; text-transform:uppercase; }
-      .story h2 { margin:0 0 6px; font-size:clamp(1.35rem,4vw,2.1rem); line-height:1.15; }
-      .story p { margin:0; font-size:clamp(.95rem,2.4vw,1.05rem); line-height:1.55; }
-      .choices { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:9px; margin-top:8px; }
-      .choice-btn { min-height:60px; padding:12px; color:var(--text); background:linear-gradient(135deg,#a3e4ff,#9fe7c8); text-align:left; font-size:.92rem; line-height:1.3; box-shadow:0 9px 16px rgba(98,190,255,.15); }
-      .choice-btn.secondary { background:linear-gradient(135deg,#ffd7a7,#ffb2c5); }
-      .choice-btn.good { background:linear-gradient(135deg,#baf7d4,#8be0ad); }
-      .choice-btn.enemy { background:linear-gradient(135deg,#ffb7c7,#ff8484); }
-      .mission p { margin:0; font-size:.92rem; line-height:1.5; }
-      .enemy-card h3 { margin:0 0 8px; font-size:1.12rem; overflow-wrap:anywhere; }
-      .health-bar { height:13px; overflow:hidden; border-radius:999px; background:rgba(24,35,62,.12); }
-      .health-bar span { display:block; width:100%; height:100%; border-radius:inherit; background:linear-gradient(90deg,#ff7d7d,#ff4f4f); transition:width .2s ease; }
-      .enemy-status { margin:8px 0 0; font-size:.85rem; opacity:.8; }
-      .intro-overlay { position:fixed; inset:0; z-index:5; display:flex; align-items:center; justify-content:center; padding:16px; background:rgba(10,19,37,.42); }
-      .intro-card { width:min(540px,100%); max-height:calc(100svh - 32px); overflow:auto; padding:clamp(20px,5vw,30px); border:3px solid white; border-radius:24px; background:linear-gradient(180deg,#fff7d7,#fff); box-shadow:0 24px 50px rgba(25,38,67,.2); text-align:center; }
-      .intro-card h2 { margin:0 0 10px; font-size:clamp(2rem,8vw,3rem); }
-      .intro-card p { margin:0 0 18px; font-size:1rem; line-height:1.6; }
-      .start-btn { min-height:54px; padding:14px 24px; background:linear-gradient(135deg,var(--yellow),#ffb954); color:#382411; font-size:1.08rem; }
-      .hidden { display:none !important; }
-      @keyframes bob { 0%,100% { transform:translateY(0); } 50% { transform:translateY(-8px); } }
-      @media (max-width:760px) {
-        body { display:block; padding: max(8px,env(safe-area-inset-top)) max(8px,env(safe-area-inset-right)) max(8px,env(safe-area-inset-bottom)) max(8px,env(safe-area-inset-left)); }
-        .game-shell { width:100%; padding:9px; border-width:2px; border-radius:18px; }
-        .topbar { align-items:flex-start; flex-direction:column; gap:10px; padding:2px 2px 10px; }
-        .brand-mark { width:46px; height:46px; flex-basis:46px; border-radius:14px; font-size:1.45rem; }
-        .hud { width:100%; grid-template-columns:repeat(4,minmax(0,1fr)); }
-        .stat { padding:7px 5px; }
-        .stat span { font-size:.57rem; }
-        .stat strong { font-size:1.15rem; }
-        .layout { grid-template-columns:minmax(0,1fr); gap:9px; }
-        .main-card { grid-row:1; padding:9px; border-radius:17px; }
-        .scene-visual { height:clamp(145px,43vw,220px); border-radius:14px; }
-        .story { padding:12px 3px 8px; }
-        .choices { gap:8px; }
-        .choice-btn { min-height:62px; padding:10px; font-size:.88rem; border-radius:12px; }
-        .side { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; padding:9px; border-radius:16px; }
-        .left-panel { grid-row:2; }
-        .right-panel { grid-row:3; }
-        .card,.mission,.enemy-card { padding:10px; border-radius:13px; }
-        .inventory { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); }
-        .inventory li { padding:7px 8px; font-size:.8rem; }
-        .button-stack { grid-template-columns:1fr; }
-      }
-      @media (max-width:360px) {
-        .choices { grid-template-columns:1fr; }
-        .side { grid-template-columns:1fr; }
-        .inventory { grid-template-columns:repeat(2,minmax(0,1fr)); }
-        .scene-tag { font-size:.72rem; }
-      }
-      @media (prefers-reduced-motion: reduce) {
-        *,*::before,*::after { scroll-behavior:auto !important; animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; }
-      }
-    </style>
-  </head>
-  <body>
-    <div class="game-shell">
-      <header class="topbar">
-        <div class="brand">
-          <div class="brand-mark" aria-hidden="true">✨</div>
-          <div><p class="eyebrow">Cartoon Quest</p><h1>Let's Go Lulu</h1></div>
+      <section id="mapView" class="view">
+        <div class="section-head"><div><h2>Choose a world</h2><p>Every place has a new friend and a little challenge.</p></div><button class="small-btn backHome" type="button">← Home</button></div>
+        <div class="world-grid" id="worldGrid"></div>
+        <div class="collection"><h3>✨ Badges collected</h3><div id="mapBadges" class="badges"></div></div>
+      </section>
+
+      <section id="storyView" class="view">
+        <div class="section-head"><div><h2 id="worldHeading">Adventure</h2><p id="worldSubtitle">Make a choice to continue the story.</p></div><button class="small-btn mapBack" type="button">🗺️ World map</button></div>
+        <div class="game-layout">
+          <article class="game-main">
+            <div class="scene-art"><div id="sceneEmoji" class="scene-emoji">🌈</div><div id="sceneName" class="scene-name">Adventure</div></div>
+            <p id="chapter" class="chapter">Chapter 1</p><h2 id="sceneTitle">Welcome</h2><p id="sceneText" class="story"></p>
+            <div id="choices" class="choices"></div>
+          </article>
+          <aside class="sidebar">
+            <section class="side-card"><h3>🌟 Adventure stats</h3><div class="stats"><div class="stat"><span>Stars</span><strong id="stars">0</strong></div><div class="stat"><span>Score</span><strong id="score">0</strong></div><div class="stat"><span>Energy</span><strong id="energy">5</strong></div><div class="stat"><span>Stickers</span><strong id="stickersCount">0</strong></div></div></section>
+            <section class="side-card"><h3>🎒 Keepsakes</h3><div id="items" class="inventory"></div></section>
+            <section class="side-card"><h3 id="challengeTitle">Friend's challenge</h3><p id="challengeText">Help a friend to earn a badge.</p><div class="bar" style="margin-top:9px"><span id="challengeBar"></span></div></section>
+          </aside>
         </div>
-        <div class="hud" aria-label="Game status">
-          <div class="stat"><span>Stars</span><strong id="stars">0</strong></div>
-          <div class="stat"><span>Sparkle</span><strong id="sparkle">10</strong></div>
-          <div class="stat"><span>Health</span><strong id="health">10</strong></div>
-          <div class="stat score-box"><span>Score</span><strong id="score">0</strong></div>
-        </div>
-      </header>
-      <main class="layout">
-        <aside class="panel side left-panel">
-          <div class="card"><p class="panel-label">Lulu's Pack</p><ul id="inventory" class="inventory"></ul></div>
-          <div class="card"><div class="button-stack">
-            <button id="restartBtn" class="action-button" type="button">Restart Adventure</button>
-            <button id="soundToggle" class="action-button" type="button" aria-pressed="true">🔊 Sound On</button>
-          </div></div>
-        </aside>
-        <section class="main-card" aria-label="Adventure story">
-          <div class="scene-visual" id="sceneVisual" aria-live="polite">
-            <div class="character" id="characterEmoji">🌤️</div><div class="scene-tag" id="sceneTag">Sunrise Path</div>
-          </div>
-          <div class="story"><p class="chapter" id="chapterLabel">Chapter 1</p><h2 id="sceneTitle">A New Adventure Begins</h2><p id="sceneText">Lulu wakes up with a bright smile and a mission: collect the lost stars before the moon rises.</p></div>
-          <div id="choices" class="choices" aria-live="polite"></div>
-        </section>
-        <aside class="panel side right-panel">
-          <div class="mission"><p class="panel-label">Mission</p><p id="missionText">Find 3 magical stars and save the sparkle kingdom.</p></div>
-          <div class="enemy-card"><p class="panel-label">Villain</p><h3 id="enemyName">Shadow Fog</h3><div class="health-bar"><span id="enemyBar"></span></div><p id="enemyStatus" class="enemy-status">Ready to cause mischief.</p></div>
-        </aside>
-      </main>
-    </div>
-    <div id="introOverlay" class="intro-overlay">
-      <div class="intro-card"><h2>Let's Go Lulu</h2><p>Lulu is on a magical adventure across glowing meadows, rivers, and castles. Collect three stars, beat the villains, and save the sparkle kingdom before sunset.</p><button type="button" class="start-btn" id="startBtn">Start Adventure</button></div>
-    </div>
-    <script>
-      const state = { stars: 0, sparkle: 10, health: 10, score: 0, inventory: ['Rainbow Map'], scene: 'intro', soundOn: true };
-      const inventorySet = new Set(state.inventory);
-      const scenes = {
-        intro: { chapter:'Chapter 1', title:'A New Adventure Begins', tag:'Sunrise Path', emoji:'🌤️', text:'Lulu wakes up with a bright smile and a mission: collect the lost stars before the moon rises.', mission:'Find 3 magical stars and save the sparkle kingdom.', enemyName:'Shadow Fog', enemyHealth:100, choices:[{label:'Follow the rainbow trail',next:'meadow',className:'good',effects:{score:20,sparkle:1}},{label:'Visit the bubble forest',next:'forest',className:'secondary',effects:{score:18}}] },
-        meadow: { chapter:'Chapter 2', title:'Rainbow Meadow', tag:'Blooming Trail', emoji:'🌈', text:'The grass sparkles as Lulu moves through a meadow brushed with rainbow light. A golden star peeks from a flower bush.', mission:'Collect shimmer and stay brave.', enemyName:'Moss Monster', enemyHealth:80, choices:[{label:'Pick the golden star',next:'lake',className:'good',effects:{stars:1,score:40,sparkle:2},item:'Golden Star'},{label:'Battle the moss monster',next:'battle',className:'enemy',effects:{score:30,health:-1}}] },
-        forest: { chapter:'Chapter 2', title:'Bubble Forest', tag:'Bubble Grove', emoji:'🌿', text:'The trees hum with cheerful music as Lulu follows a fox toward a bright little path in the woods.', mission:'Use courage and curiosity to gather new magic.', enemyName:'Whisper Wisp', enemyHealth:65, choices:[{label:'Follow the fox to the river',next:'river',className:'good',effects:{score:25,sparkle:2}},{label:'Challenge the whisper wisp',next:'battle',className:'enemy',effects:{score:28,health:-1}}] },
-        lake: { chapter:'Chapter 3', title:'Crystal Lake', tag:'Moonwater', emoji:'💎', text:'The water shines like glass. A second star swings above the lake and invites Lulu closer.', mission:'Reach the castle before the moonlight fades.', enemyName:'Tide Troll', enemyHealth:90, choices:[{label:'Catch the star from the water',next:'castle',className:'good',effects:{stars:1,score:45,sparkle:3},item:'Crystal Star'},{label:'Use a sparkle splash attack',next:'battle',className:'enemy',effects:{score:35,sparkle:-1,health:-1}}] },
-        river: { chapter:'Chapter 3', title:'Silver River', tag:'River Run', emoji:'🛶', text:'Lulu rides a tiny boat across a silver river and finds a star resting on a waterfall island.', mission:'Choose carefully and keep your sparkle high.', enemyName:'Frog Bandit', enemyHealth:75, choices:[{label:'Grab the waterfall star',next:'castle',className:'good',effects:{stars:1,score:50,sparkle:2},item:'Waterfall Star'},{label:'Race the frogs to the island',next:'battle',className:'enemy',effects:{score:30,health:-2}}] },
-        battle: { chapter:'Chapter 4', title:'Sparkle Battle', tag:'Hero Moment', emoji:'⚡', text:'The villain blocks the path. Lulu must use a bold move to protect the kingdom and her friends.', mission:'Choose the smartest attack and protect your health.', enemyName:'Shadow Fog', enemyHealth:100, choices:[{label:'Use a rainbow blast',next:'castle',className:'enemy',effects:{score:70,sparkle:-2,health:1}},{label:'Perform a happy dance attack',next:'finale',className:'good',effects:{score:90,sparkle:3,health:2}}] },
-        castle: { chapter:'Chapter 5', title:'Crystal Castle', tag:'Castle Gate', emoji:'🏰', text:'The crystal castle glows with hope as Lulu enters with several star fragments shining in her hands.', mission:'Finish the adventure and light the whole sky.', enemyName:'Final Sentinel', enemyHealth:60, choices:[{label:'Light the star crown',next:'ending',className:'good',effects:{stars:1,score:100,sparkle:4},item:'Star Crown'},{label:'Ask the castle to sing for everyone',next:'ending',className:'secondary',effects:{score:90,sparkle:2}}] },
-        finale: { chapter:'Finale', title:'The Heroic Finale', tag:'Grand Celebration', emoji:'🎉', text:'Lulu’s happy dance blasts away the last shadows, and the sky bursts into color as the realm cheers.', mission:'Bring magic home and celebrate the victory.', enemyName:'Broken Fog', enemyHealth:0, choices:[{label:'Enter the crystal castle',next:'ending',className:'good',effects:{stars:1,score:110,sparkle:4}}] },
-        ending: { chapter:'Adventure Complete', title:'Lulu Saves the Sparkle Kingdom!', tag:'Victory', emoji:'🌟', text:'The stars shine bright, the castle glows, and the whole kingdom dances in celebration. Lulu is the hero of a joyful new story.', mission:'You won! Play again for another magical adventure.', enemyName:'Defeated', enemyHealth:0, choices:[{label:'Play again',next:'intro',className:'good',effects:{score:0,sparkle:10,health:10,stars:0}}] }
-      };
-      const refs = Object.fromEntries(['stars','sparkle','health','score','inventory','sceneTag','sceneTitle','sceneText','chapterLabel','choices','missionText','enemyName','enemyBar','enemyStatus','characterEmoji','restartBtn','soundToggle','introOverlay','startBtn'].map(id => [id,document.getElementById(id)]));
-      function updateHud() {
-        for (const key of ['stars','sparkle','health','score']) refs[key].textContent = String(state[key]);
-        refs.inventory.replaceChildren();
-        for (const item of state.inventory) { const li=document.createElement('li'); li.textContent=item; refs.inventory.appendChild(li); }
-      }
-      function addToInventory(item) { if (item && !inventorySet.has(item)) { inventorySet.add(item); state.inventory.push(item); } }
-      function playTone(type='good') {
-        if (!state.soundOn) return;
-        const AudioCtx=window.AudioContext||window.webkitAudioContext;
-        if (!AudioCtx) return;
-        const audio=new AudioCtx(), oscillator=audio.createOscillator(), gain=audio.createGain();
-        oscillator.type=type==='enemy'?'sawtooth':'triangle'; oscillator.frequency.value=type==='enemy'?180:440; gain.gain.value=.035;
-        oscillator.connect(gain); gain.connect(audio.destination); oscillator.start(); oscillator.stop(audio.currentTime+.16); setTimeout(()=>audio.close(),200);
-      }
-      function applyEffects(effects={}) { for (const key of ['stars','sparkle','health','score']) if (typeof effects[key]==='number') state[key]=Math.max(0,state[key]+effects[key]); }
-      function renderScene() {
-        const scene=scenes[state.scene]; if (!scene) return;
-        refs.characterEmoji.textContent=scene.emoji; refs.sceneTag.textContent=scene.tag; refs.sceneTitle.textContent=scene.title; refs.sceneText.textContent=scene.text; refs.chapterLabel.textContent=scene.chapter; refs.missionText.textContent=scene.mission; refs.enemyName.textContent=scene.enemyName;
-        refs.enemyBar.style.width=`${Math.max(0,scene.enemyHealth??100)}%`; refs.enemyStatus.textContent=(scene.enemyHealth??100)>0?'Ready to cause mischief.':'Defeated!'; refs.choices.replaceChildren();
-        for (const choice of scene.choices) {
-          const button=document.createElement('button'); button.type='button'; button.className=`choice-btn ${choice.className||''}`; button.textContent=choice.label;
-          button.addEventListener('click',()=>{ applyEffects(choice.effects); addToInventory(choice.item); playTone(choice.effects?.health<0?'enemy':'good'); state.scene=choice.next; if(state.stars>=3&&state.scene!=='ending')state.scene='castle'; if(state.health<=0)state.scene='intro'; renderScene(); }); refs.choices.appendChild(button);
-        }
-        updateHud();
-      }
-      function resetGame() {
-        Object.assign(state,{stars:0,sparkle:10,health:10,score:0,inventory:['Rainbow Map'],scene:'intro'});
-        inventorySet.clear(); inventorySet.add('Rainbow Map'); refs.introOverlay.classList.add('hidden'); renderScene();
-      }
-      refs.startBtn.addEventListener('click',resetGame);
-      refs.restartBtn.addEventListener('click',()=>{resetGame();playTone('good');});
-      refs.soundToggle.addEventListener('click',()=>{state.soundOn=!state.soundOn;refs.soundToggle.textContent=state.soundOn?'🔊 Sound On':'🔇 Sound Off';refs.soundToggle.setAttribute('aria-pressed',String(state.soundOn));});
-      updateHud(); renderScene();
-    </script>
-  </body>
+      </section>
+
+      <section id="miniView" class="view">
+        <div class="section-head"><div><h2 id="miniTitle">Mini-game</h2><p id="miniSubtitle">A quick challenge!</p></div><button class="small-btn mapBack" type="button">🗺️ World map</button></div>
+        <div class="hero"><div class="hero-art" id="miniArt" aria-hidden="true">🎈</div><h2 id="miniQuestion">Ready to play?</h2><p id="miniPrompt">Choose the right answer to earn stars and a sticker.</p><div id="miniChoices" class="mini-grid"></div><p id="miniFeedback" aria-live="polite" style="margin-top:14px;font-weight:800"></p></div>
+      </section>
+    </main>
+    <footer class="footer-note">A cheerful, fan-inspired mini game universe. All characters and stories here are original playful creations.</footer>
+  </div>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    const SAVE_KEY = 'lulu-cartoon-universe-v1';
+    const initialSave = {badges:[], completedWorlds:[], stickers:[], bestScore:0};
+    let save = loadSave();
+    let soundOn = true;
+    let currentWorld = null;
+    let miniRound = 0;
+    let toastTimer;
+
+    const worlds = [
+      {id:'meadow',name:'Rainbow Meadow',emoji:'🌈',description:'Meet Pip the bunny and find the missing star seeds.',color:'meadow',badge:'Meadow Helper'},
+      {id:'bubble',name:'Bubble Forest',emoji:'🫧',description:'Help Tiko the fox match the floating bubble colors.',color:'bubble',badge:'Bubble Buddy'},
+      {id:'castle',name:'Cloud Castle',emoji:'🏰',description:'Solve the cloud riddles and face the friendly fog dragon.',color:'castle',badge:'Castle Champion'}
+    ];
+    const adventures = {
+      meadow:[
+        {chapter:'Meadow • 1 of 3',title:'Pip Lost the Star Seeds',emoji:'🐰',name:'Daisy Meadow',text:'Pip the bunny is planting a garden, but the playful wind scattered the star seeds. Can Lulu help?',challenge:'Help Pip find 3 star seeds.',choices:[{label:'Search beneath the big daisy',next:1,stars:1,score:20,item:'🌼 Daisy seed',kind:'good'},{label:'Ask the butterflies for a clue',next:1,score:10,item:'🦋 Butterfly clue',kind:'alt'}]},
+        {chapter:'Meadow • 2 of 3',title:'A Wiggly Bridge',emoji:'🌉',name:'Wiggle Bridge',text:'A little bridge wiggles over a stream. Pip says a cheerful rhythm will help everyone cross safely.',challenge:'Choose the rhythm that matches the hopping bunnies.',mini:'rhythm',choices:[{label:'Hop, hop, pause!',next:2,stars:1,score:25,kind:'good'},{label:'Run as fast as you can',next:2,energy:-1,score:5,kind:'alt'}]},
+        {chapter:'Meadow • 3 of 3',title:'The Garden Party',emoji:'🎉',name:'Pip’s Garden',text:'The seeds are planted and the flowers open in a twinkly burst. Pip invites Lulu to the garden party!',challenge:'Celebrate your new friendship.',choices:[{label:'Join the flower dance',next:'win',stars:1,score:30,item:'🌟 Meadow badge',kind:'good'}]}
+      ],
+      bubble:[
+        {chapter:'Forest • 1 of 3',title:'Tiko’s Colorful Bubbles',emoji:'🦊',name:'Bubble Grove',text:'Tiko the fox has a bubble machine, but the colors are all mixed up. Help sort them before the bubbles float away!',challenge:'Match colors to help Tiko.',mini:'color',choices:[{label:'Play the bubble match game',next:1,score:10,kind:'good'}]},
+        {chapter:'Forest • 2 of 3',title:'The Sleepy Owl',emoji:'🦉',name:'Whispering Trees',text:'An owl is trying to nap while the bubbles pop nearby. Lulu needs a gentle way to quiet the grove.',challenge:'Find a kind solution.',choices:[{label:'Sing a soft forest lullaby',next:2,stars:1,score:25,item:'🎵 Owl’s song',kind:'good'},{label:'Pop every bubble loudly',next:2,energy:-1,score:5,kind:'alt'}]},
+        {chapter:'Forest • 3 of 3',title:'A Bubble Rainbow',emoji:'🌈',name:'Rainbow Clearing',text:'Tiko makes one giant bubble that turns into a rainbow. All the forest friends cheer for Lulu!',challenge:'Enjoy the rainbow celebration.',choices:[{label:'Take a forest friendship sticker',next:'win',stars:1,score:30,item:'🫧 Forest badge',kind:'good'}]}
+      ],
+      castle:[
+        {chapter:'Castle • 1 of 3',title:'Cloud Castle’s Riddle',emoji:'☁️',name:'Cloud Gate',text:'The castle gate asks a friendly riddle: “I have a face and two hands, but no arms. What am I?”',challenge:'Solve the castle riddle.',mini:'riddle',choices:[{label:'Try the riddle!',next:1,score:10,kind:'good'}]},
+        {chapter:'Castle • 2 of 3',title:'The Fog Dragon',emoji:'🐉',name:'Cloud Courtyard',text:'A tiny fog dragon is hiding the castle bell. It is not mean—just lonely. Lulu can help it feel welcome.',challenge:'Choose a caring way to make a friend.',choices:[{label:'Invite the dragon to play',next:2,stars:1,score:25,item:'🐉 Dragon’s friendship',kind:'good'},{label:'Scold the dragon',next:2,energy:-1,score:5,kind:'alt'}]},
+        {chapter:'Castle • 3 of 3',title:'The Bell of Bright Skies',emoji:'🔔',name:'Cloud Castle',text:'The dragon rings the bell, and the clouds open to a sparkling sky. Lulu and her new friend are castle heroes!',challenge:'Celebrate a new friendship.',choices:[{label:'Ring the happy bell',next:'win',stars:1,score:35,item:'🏰 Castle badge',kind:'good'}]}
+      ]
+    };
+    const miniGames = {
+      rhythm:{title:'Bunny Hop Rhythm',subtitle:'Tap the matching rhythm!',art:'🐇',question:'Which rhythm should Pip hop?',prompt:'Look for two hops, then a short pause.',answers:[['Hop, hop, pause!','correct'],['Hop all day with no pause','wrong'],['Sleep through the song','wrong']]},
+      color:{title:'Bubble Color Match',subtitle:'A tiny color-matching challenge!',art:'🫧',question:'Tiko needs a blue bubble. Which one should you choose?',prompt:'Tap the matching color.',answers:[['🔵 Blue','correct'],['🟡 Yellow','wrong'],['🔴 Red','wrong']]},
+      riddle:{title:'Cloud Castle Riddle',subtitle:'Can you solve the riddle?',art:'⏰',question:'I have a face and two hands, but no arms. What am I?',prompt:'Choose your answer.',answers:[['A clock','correct'],['A cloud','wrong'],['A bunny','wrong']]}
+    };
+    const $ = id => document.getElementById(id);
+    function loadSave(){try{return {...initialSave,...JSON.parse(localStorage.getItem(SAVE_KEY)||'{}')}}catch{return {...initialSave}}}
+    function persist(){try{localStorage.setItem(SAVE_KEY,JSON.stringify(save))}catch{} renderBadges()}
+    function showView(id){document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));$(id).classList.add('active');window.scrollTo({top:0,behavior:'smooth'})}
+    function toast(message){const el=$('toast');el.textContent=message;el.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.remove('show'),2100)}
+    function beep(){if(!soundOn)return;try{const C=window.AudioContext||window.webkitAudioContext;if(!C)return;const c=new C(),o=c.createOscillator(),g=c.createGain();o.type='triangle';o.frequency.value=520;g.gain.value=.035;o.connect(g);g.connect(c.destination);o.start();o.stop(c.currentTime+.12);setTimeout(()=>c.close(),160)}catch{}}
+    function renderBadges(){['homeBadges','mapBadges'].forEach(id=>{const el=$(id);el.replaceChildren();if(!save.badges.length){const span=document.createElement('span');span.className='badge empty';span.textContent='Your first badge is waiting!';el.appendChild(span);return}save.badges.forEach(b=>{const span=document.createElement('span');span.className='badge';span.textContent='🏅 '+b;el.appendChild(span)})})}
+    function renderWorlds(){const grid=$('worldGrid');grid.replaceChildren();worlds.forEach((world,index)=>{const unlocked=index===0||save.completedWorlds.includes(worlds[index-1].id);const card=document.createElement('button');card.type='button';card.className=`world-card ${world.color}`;card.disabled=!unlocked;const icon=document.createElement('span');icon.className='emoji';icon.textContent=world.emoji;const name=document.createElement('strong');name.textContent=world.name;const desc=document.createElement('span');desc.textContent=unlocked?world.description:'Complete the previous world to unlock this place.';card.append(icon,name,desc);if(!unlocked){const lock=document.createElement('span');lock.className='lock';lock.textContent='🔒';card.appendChild(lock)}card.addEventListener('click',()=>startWorld(world.id));grid.appendChild(card)})}
+    function startWorld(id){currentWorld=id;renderScene(0);showView('storyView')}
+    function getProgress(){const key=`${currentWorld}Score`;return Number(sessionStorage.getItem(key)||0)}
+    function addScore(points){const key=`${currentWorld}Score`;sessionStorage.setItem(key,String(getProgress()+points))}
+    function renderScene(index){const world=worlds.find(w=>w.id===currentWorld);const scene=adventures[currentWorld][index];$('worldHeading').textContent=world.name;$('worldSubtitle').textContent=world.description;$('chapter').textContent=scene.chapter;$('sceneTitle').textContent=scene.title;$('sceneEmoji').textContent=scene.emoji;$('sceneName').textContent=scene.name;$('sceneText').textContent=scene.text;$('challengeTitle').textContent='✨ '+world.badge;$('challengeText').textContent=scene.challenge;$('challengeBar').style.width=`${Math.round(index/2*100)}%`;$('stars').textContent=String(save.badges.length);$('score').textContent=String(getProgress());$('energy').textContent=String(Math.max(0,5-(Number(sessionStorage.getItem(currentWorld+'EnergyLoss')||0))));$('stickersCount').textContent=String(save.stickers.length);$('items').replaceChildren();const collected=save.stickers.length?save.stickers:['No keepsakes yet'];collected.slice(-5).forEach(item=>{const span=document.createElement('span');span.className='item';span.textContent=item;$('items').appendChild(span)});const choices=$('choices');choices.replaceChildren();scene.choices.forEach(choice=>{const button=document.createElement('button');button.type='button';button.className=`game-btn ${choice.kind==='alt'?'alt':choice.kind==='warm'?'warm':''}`;button.textContent=choice.label;button.addEventListener('click',()=>choose(choice,index));choices.appendChild(button)})}
+    function choose(choice,index){if(choice.mini){launchMini(choice.mini,index);return}if(choice.energy<0){const key=currentWorld+'EnergyLoss';sessionStorage.setItem(key,String(Number(sessionStorage.getItem(key)||0)+1))}addScore(choice.score||0);if(choice.item&&!save.stickers.includes(choice.item)){save.stickers.push(choice.item);persist()}if(choice.stars){save.badges.push(choice.item||'Sparkle Star');persist()}beep();if(choice.next==='win'){finishWorld();return}renderScene(choice.next)}
+    function finishWorld(){const world=worlds.find(w=>w.id===currentWorld);if(!save.completedWorlds.includes(currentWorld))save.completedWorlds.push(currentWorld);if(!save.badges.includes(world.badge))save.badges.push(world.badge);save.bestScore=Math.max(save.bestScore,getProgress());persist();renderWorlds();toast(`🎉 ${world.name} complete! ${world.badge} earned!`);showView('mapView')}
+    function launchMini(type,returnIndex){const game=miniGames[type];miniRound=0;$('miniTitle').textContent=game.title;$('miniSubtitle').textContent=game.subtitle;$('miniArt').textContent=game.art;$('miniFeedback').textContent='';renderMini(type,returnIndex);showView('miniView')}
+    function renderMini(type,returnIndex){const game=miniGames[type];$('miniQuestion').textContent=game.question;$('miniPrompt').textContent=game.prompt;const wrap=$('miniChoices');wrap.replaceChildren();game.answers.forEach(([label,result])=>{const b=document.createElement('button');b.type='button';b.className='game-btn';b.textContent=label;b.addEventListener('click',()=>{if(result==='correct'){b.textContent='✅ '+label;$('miniFeedback').textContent='Correct! You earned 20 sparkle points!';addScore(20);beep();setTimeout(()=>{renderScene(returnIndex+1);showView('storyView')},850)}else{$('miniFeedback').textContent='Not quite—try another answer!';b.classList.add('alt')}});wrap.appendChild(b)})}
+    $('exploreBtn').addEventListener('click',()=>{renderWorlds();showView('mapView')});document.querySelectorAll('.backHome').forEach(b=>b.addEventListener('click',()=>showView('homeView')));document.querySelectorAll('.mapBack').forEach(b=>b.addEventListener('click',()=>{renderWorlds();showView('mapView')}));$('soundBtn').addEventListener('click',()=>{soundOn=!soundOn;$('soundBtn').textContent=soundOn?'🔊 Sound':'🔇 Muted';$('soundBtn').setAttribute('aria-pressed',String(soundOn));beep()});$('resetBtn').addEventListener('click',()=>{if(confirm('Reset all badges and world progress on this device?')){save={...initialSave,badges:[],completedWorlds:[],stickers:[]};try{localStorage.removeItem(SAVE_KEY)}catch{}try{sessionStorage.clear()}catch{}renderWorlds();renderBadges();toast('Progress reset. Start a fresh adventure!')}});
+    renderBadges();renderWorlds();
+  </script>
+</body>
 </html>
